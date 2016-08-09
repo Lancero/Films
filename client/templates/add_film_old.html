@@ -1,0 +1,42 @@
+<template name="add_film_old">
+	<h3>Dodaj film</h3>
+	<form class="new-film" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="localTitle">Tytuł Polski</label>
+			<input type="text">
+		</div>
+		<div class="form-group">
+			<label for="orgTitle">Tytuł Oryginalny</label>
+			<input type="text">
+		</div>
+		<div class="form-group">
+			<label for="year">Rok</label>
+			<input type="number">
+		</div>
+		<div class="form-group">
+			<label for="discType">Typ nośnika</label>
+			<select name="disc_option" form="disc">
+				<option value="bd">Blu-ray</option>
+				<option value="dvd">DVD</option>
+				<option value="other">Inne</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="genre">Gatunek</label>
+			<input type="text">
+		</div>
+		<div class="form-group">
+			<label for="country">Produkcja</label>
+			<input type="text">
+		</div>
+		<div class="form-group">
+			<label for="desc">Opis</label>
+			<input type="text">
+		</div>
+		<div class="form-group">
+			<label for="imageFile">Zdjęcie</label>
+			<input type="file" name="film-image" id="film-image">
+		</div>
+		<button type="submit" class="btn btn-default">Dodaj</button>
+	</form>
+</template>

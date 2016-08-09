@@ -1,0 +1,21 @@
+body {
+	padding-top: 70px;
+}
+.film-list {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px; 
+	padding-bottom: 10px;
+}
+.film-poster {
+	margin: 15px;
+	width: 100%;
+	height: 100%;
+}
+.label-disc {
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+}
+.navbar-right {
+	margin-right: 150px;
+}

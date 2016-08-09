@@ -1,0 +1,24 @@
+<template name="film_info">
+
+	{{#with film}} <!-- with creates this -->
+	{{#if editMode}}
+		
+	{{else}}
+		<h4>Film Info</h4>
+		<h2>{{local_title}}</h2>
+		<h4>{{original_title}}</h4>
+		{{year}}
+		{{disc_type}}
+		{{desc}}
+		{{image}}
+		{{createdAt}}
+
+	{{/if}}
+		<i class="glyphicon glyphicon-cog"></i> 	
+		<i class="glyphicon glyphicon-trash"></i>
+	
+	{{else}}
+	 <p>Page not found</p>
+	{{/with}}
+
+</template>
