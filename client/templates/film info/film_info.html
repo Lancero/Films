@@ -1,0 +1,42 @@
+<template name="film_info">
+
+	{{#with film}} <!-- with creates this -->
+	{{#if editMode}}
+		<h4>Edit Film</h4>
+		{{#autoForm collection="Films" doc=this id="updateFilm" type="update"}}
+			<fieldset>
+				{{> afQuickField name='localTitle'}}
+				{{> afQuickField name='orgTitle'}}
+				{{> afQuickField name='year'}}
+				{{> afQuickField name='genre' options='allowed'}}
+				{{> afQuickField name='disc_type' options='allowed'}}
+				{{> afQuickField name='desc' rows=6}}
+				{{> afQuickField name='imageId'}}
+				
+<!-- 				{{#with currentUpload}}
+	    				Uploading <b>{{file.name}}</b>: 
+	    				<span id="progress">{{progress.get}}%</span>
+	  				{{else}}
+	    				<input id="fileInput" type="file" />
+	  				{{/with}} -->	
+			</fieldset>
+			<button type="submit" class="btn btn-primary">Insert</button>
+{{/autoForm}}
+	{{else}}
+		<h4>Film Info</h4>
+		<h2>{{local_title}}</h2>
+		<h4>{{original_title}}</h4>
+		<img src="{{imagePath imageId}}" width="300" alt="film poster">
+		<p>{{year}}</p>
+		<p>{{disc_type}}</p>
+		<p>{{desc}}</p>
+		<p>{{image}}</p>
+		<p>{{createdAt}}</p>
+
+	{{/if}}
+		<i class="glyphicon glyphicon-cog"></i>	
+		<i class="glyphicon glyphicon-trash"></i>
+	
+
+	{{/with}}
+</template>

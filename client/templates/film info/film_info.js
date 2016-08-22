@@ -2,7 +2,6 @@ var hooksObject = {
 	before: {
 		insert: function(doc){
 			doc.imageId = imgId;
-			console.log(imgId);
 			return doc;
 		}
 	},
@@ -19,18 +18,48 @@ var imgId = null;
 
 AutoForm.addHooks('addFilm',hooksObject);
 
-Template.add_film.onCreated(function () {
+Template.film_info.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
 
-Template.add_film.helpers({
-  currentUpload: function () {
-    return Template.instance().currentUpload.get();
-  }
+Template.film_info.helpers({
+	film: ()=>{
+		var id = FlowRouter.getParam('id');
+		return Films.findOne({_id: id});
+	},
+	editMode: function(){
+		return Session.get('editMode');
+	},
+	imagePath: function(imageId){
+		var image = imageId && Images.findOne(imageId);
+		return image ? image.link() : "/img/lionking.jpg";
+	},
+  	currentUpload: function () {
+    	return Template.instance().currentUpload.get();
+	}
 });
 
-Template.add_film.events({
-  'change #fileInput': function (e, template) {
+Template.film_info.events({
+	'click .glyphicon-trash': function(event){				
+
+		if(confirm('Are You Sure?')){
+			var test = this._id;
+			var image = this.imageId;
+
+			Meteor.call('deleteFilm', this._id);
+			Meteor.call('deleteImage', image);
+
+			FlashMessages.sendSuccess('Film removed from database');
+			FlowRouter.go('/database');
+
+			return false
+		}
+	},
+	'click .glyphicon-cog' : function(){
+		Session.set('editMode', !Session.get('editMode'));
+		
+	},
+	'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 
       // multiple files were selected
@@ -58,3 +87,4 @@ Template.add_film.events({
     }
   }
 });
+

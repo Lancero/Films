@@ -1,4 +1,6 @@
 body {
+	background-image: url('/img/background.png'); /* Background pattern from subtlepatterns.com */
+	color: #ccc;
 	padding-top: 70px;
 }
 .film-list {

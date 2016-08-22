@@ -1,3 +1,3 @@
-/*Meteor.publish('films', function(){
+Meteor.publish('films', function(){
 	return Films.find({});
-});*/
+});
