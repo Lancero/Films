@@ -13,15 +13,21 @@
 				{{> afQuickField name='desc' rows=6}}
 				{{> afQuickField name='imageId'}}
 				
-<!-- 				{{#with currentUpload}}
-	    				Uploading <b>{{file.name}}</b>: 
-	    				<span id="progress">{{progress.get}}%</span>
-	  				{{else}}
-	    				<input id="fileInput" type="file" />
-	  				{{/with}} -->	
+				<!-- Update Image (in progress) -->
+
+				{{#with updateImage}} 	
+    				Uploading <b>{{file.name}}</b>: 
+    				<span id="progress">{{progress.get}}%</span>
+  				{{else}}
+    				<input id="fileInput" type="file" />
+  				{{/with}}
+  				<br>
+
+  				<!-- Update Image (in progress) -->
 			</fieldset>
+			<button type="submit" class="btn btn-primary">Zapisz</button>
 			<div class="btn-group">
-				<button type="submit" class="btn btn-primary">Zapisz</button>
+				
 				<button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Anuluj</button>
 			</div>
 		{{/autoForm}}	

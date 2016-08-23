@@ -11,7 +11,7 @@ var hooksObject = {
 		insert: function(){
 			
 			FlowRouter.go('database');
-			FlashMessages.sendSuccess('New film added');
+			FlashMessages.sendSuccess('Pomyślnie dodano nowy film');
 
 		}
 	}
@@ -20,11 +20,11 @@ var imgId = null;
 
 AutoForm.addHooks('addFilm',hooksObject);
 
-Template.add_film.onCreated(function () {  //ok
+Template.add_film.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
 
-Template.add_film.helpers({           //ok
+Template.add_film.helpers({
   currentUpload: function () {
     return Template.instance().currentUpload.get();
   }

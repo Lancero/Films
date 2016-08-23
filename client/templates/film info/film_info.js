@@ -1,26 +1,37 @@
-/*var hooksObject = {
+var hooksObject = {
 	before: {
-		insert: function(doc){
+		update: function(doc){
+			var filmId = FlowRouter.getParam('id');
+			console.log(newImgId);
 			console.log(doc);
-			console.log(imgId);
-			doc.imageId = imgId;
+
+			console.log(filmId);
+
+			doc['$set'].imageId = newImgId
+			doc['$set'].modifiedAt = new Date() // nie działa bo nie ma zdefioniowanego takiego pola w schema
+			//Films.update({
+				//_id: filmId
+		
+				
+					
+						
 			return doc;
 		}
 	},
 	after: {
-		insert: function(){			
+		update: function(){			
 			FlowRouter.go('database');
-			FlashMessages.sendSuccess('New film added');
+			FlashMessages.sendSuccess('Film został zmieniony');
 		}
 	}
-};*/
-//var imgId = null;
+};
+var newImgId = null; //Tutaj może być konflikt
 
-//AutoForm.addHooks('addFilm',hooksObject);
+AutoForm.addHooks('updateFilm', hooksObject);
 
-/*Template.film_info.onCreated(function () {
-  this.currentUpload = new ReactiveVar(false);
-});*/
+Template.film_info.onCreated(function () {
+  this.updateImage = new ReactiveVar(false);
+});
 
 Template.film_info.helpers({
 	film: ()=>{
@@ -35,11 +46,10 @@ Template.film_info.helpers({
 		var image = imageId && Images.findOne(imageId);
 		console.log(image);
 		return image ? image.link() : "/img/suit.jpg";
+	},
+  	updateImage: function () {
+    	return Template.instance().updateImage.get();
 	}
-/*	,
-  	currentUpload: function () {
-    	return Template.instance().currentUpload.get();
-	}*/
 });
 
 Template.film_info.events({
@@ -65,7 +75,7 @@ Template.film_info.events({
 	'click .return' : function(){
 		FlowRouter.go('/database');	
 	}
-	/*,
+	,
 	'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 
@@ -77,7 +87,8 @@ Template.film_info.events({
       }, false);
 
       upload.on('start', function () {
-        template.currentUpload.set(this);
+        template.updateImage.set(this);
+        console.log(template.updateImage.set(this));
       });
 
       upload.on('end', function (error, fileObj) {
@@ -85,13 +96,14 @@ Template.film_info.events({
           FlashMessages.sendError('Error during upload: ' + error);
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
-          imgId=fileObj._id;
+          newImgId=fileObj._id; //<--Tutaj może być problem [zmieniono]
+          console.log(newImgId);
         }
-        template.currentUpload.set(false);
+        template.updateImage.set(false);
       });
 
       upload.start();
-    }*/
-  //}
+    }
+  }
 });
 
