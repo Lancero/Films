@@ -20,23 +20,43 @@
 	    				<input id="fileInput" type="file" />
 	  				{{/with}} -->	
 			</fieldset>
-			<button type="submit" class="btn btn-primary">Insert</button>
-{{/autoForm}}
+			<div class="btn-group">
+				<button type="submit" class="btn btn-primary">Zapisz</button>
+				<button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Anuluj</button>
+			</div>
+		{{/autoForm}}	
 	{{else}}
-		<h4>Film Info</h4>
-		<h2>{{local_title}}</h2>
-		<h4>{{original_title}}</h4>
-		<img src="{{imagePath imageId}}" width="300" alt="film poster">
-		<p>{{year}}</p>
-		<p>{{disc_type}}</p>
-		<p>{{desc}}</p>
-		<p>{{image}}</p>
-		<p>{{createdAt}}</p>
-
-	{{/if}}
-		<i class="glyphicon glyphicon-cog"></i>	
-		<i class="glyphicon glyphicon-trash"></i>
+		<div class="container">
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="center-block" src="{{imagePath imageId}}" width="300" alt="film poster">
+				</div>
+				<div class="col-md-6">
+					<button type="button" class="btn btn-primary pull-right return">Powrót</button>
+					<h2>{{localTitle}}</h2>
+					<h4>{{orgTitle}}</h4>
+					<p>{{year}}</p>
+					<p>{{disc_type}}</p>
+					<p>{{image}}</p>
+					<p>{{createdAt}}</p>
+					<p>{{genre}}</p>
+				</div>
+			</div>
+				<br>	
+			<div class="row">
+				<div class="col-md-10">
+					<p>{{desc}}</p>
+					<div class="btn-group pull-right" role="group" aria-label="UI buttons">
+					  <button type="button" class="btn btn-primary">Opcje</button>
+					  <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Edytuj</button>
+					  <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-trash"></i> Usuń film</button>
+					</div>	
+				</div>
+			</div>						
+		</div>
+	{{/if}}					
 	
-
 	{{/with}}
 </template>

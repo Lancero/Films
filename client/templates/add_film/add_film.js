@@ -1,6 +1,8 @@
 var hooksObject = {
 	before: {
 		insert: function(doc){
+      console.log(imgId);
+
 			doc.imageId = imgId;
 			return doc;
 		}
@@ -18,11 +20,11 @@ var imgId = null;
 
 AutoForm.addHooks('addFilm',hooksObject);
 
-Template.add_film.onCreated(function () {
+Template.add_film.onCreated(function () {  //ok
   this.currentUpload = new ReactiveVar(false);
 });
 
-Template.add_film.helpers({
+Template.add_film.helpers({           //ok
   currentUpload: function () {
     return Template.instance().currentUpload.get();
   }
@@ -45,11 +47,12 @@ Template.add_film.events({
 
       upload.on('end', function (error, fileObj) {
         if (error) {
-          FlashMessages.sendError('Error during upload: ' + error);
+          alert('Error during upload: ' + error);
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
-          imgId=fileObj._id;
+          imgId=fileObj._id; //tego nie ma w oryginale
         }
+        console.log(imgId); // tutaj jest prawidłowe id ale nie jest przypisane do Films
         template.currentUpload.set(false);
       });
 

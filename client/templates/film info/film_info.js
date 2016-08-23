@@ -1,26 +1,26 @@
-var hooksObject = {
+/*var hooksObject = {
 	before: {
 		insert: function(doc){
+			console.log(doc);
+			console.log(imgId);
 			doc.imageId = imgId;
 			return doc;
 		}
 	},
 	after: {
-		insert: function(){
-			
+		insert: function(){			
 			FlowRouter.go('database');
 			FlashMessages.sendSuccess('New film added');
-
 		}
 	}
-};
-var imgId = null;
+};*/
+//var imgId = null;
 
-AutoForm.addHooks('addFilm',hooksObject);
+//AutoForm.addHooks('addFilm',hooksObject);
 
-Template.film_info.onCreated(function () {
+/*Template.film_info.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
-});
+});*/
 
 Template.film_info.helpers({
 	film: ()=>{
@@ -31,12 +31,15 @@ Template.film_info.helpers({
 		return Session.get('editMode');
 	},
 	imagePath: function(imageId){
+		console.log(imageId);
 		var image = imageId && Images.findOne(imageId);
-		return image ? image.link() : "/img/lionking.jpg";
-	},
+		console.log(image);
+		return image ? image.link() : "/img/suit.jpg";
+	}
+/*	,
   	currentUpload: function () {
     	return Template.instance().currentUpload.get();
-	}
+	}*/
 });
 
 Template.film_info.events({
@@ -59,6 +62,10 @@ Template.film_info.events({
 		Session.set('editMode', !Session.get('editMode'));
 		
 	},
+	'click .return' : function(){
+		FlowRouter.go('/database');	
+	}
+	/*,
 	'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 
@@ -84,7 +91,7 @@ Template.film_info.events({
       });
 
       upload.start();
-    }
-  }
+    }*/
+  //}
 });
 
