@@ -1,21 +1,32 @@
-Template.sidebar.onCreated(function () {
-  this.category = new ReactiveVar('Default');
-});
+import {category} from '/imports/import.js'
 
 Template.sidebar.events({
-	'click .show-BD': function(e, tmpl){
-		tmpl.category.set('.show-BD');	
+	'click .show-BD': function(){
+		category.set('Blu-ray');
 	},
-	'click .show-DVD': function(e, tmpl){
-		tmpl.category.set('.show-DVD');
+	'click .show-DVD': function(){
+		category.set('DVD');
 	},
-	'click .show-OTH': function(e, tmpl){
-		tmpl.category.set('.show-OTH');
+	'click .show-OTH': function(){
+		category.set('Inny');
+	},
+	'click .show-ALL': function(){
+		category.set(null);
 	}
 });
 
 Template.sidebar.helpers({
-	currentCategory: function(){
-		return Template.instance().category.get();
+	numberBD: function(){
+		return Films.find({disc_type: 'Blu-ray'}).count();
+	},
+	numberDVD: function(){
+		return Films.find({disc_type: 'DVD'}).count();
+	},
+	numberOTH: function(){
+		return Films.find({disc_type: 'Inny'}).count();
+	},
+	numberALL: function(){
+		return Films.find().count();
 	}
 });
+	

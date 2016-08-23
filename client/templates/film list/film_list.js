@@ -1,10 +1,11 @@
+import {category} from '/imports/import.js'
+
 Template.film_list.helpers ({
 	films: ()=> {
-		//console.log(Template.instance().category.get());
-		return Films.find({}, {sort:{localTitle: 1}});
-
+		if(category.get()===null){
+			return Films.find({}, {sort:{localTitle: 1}});
+		} else {
+			return Films.find({disc_type: category.get()}, {sort:{localTitle: 1}});	
+		}				
 	}
 });
-
-
-//disc_type: 'DVD'
