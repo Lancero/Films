@@ -2,30 +2,21 @@ var hooksObject = {
 	before: {
 		update: function(doc){
 			var filmId = FlowRouter.getParam('id');
-			console.log(newImgId);
-			console.log(doc);
-
-			console.log(filmId);
-
 			doc['$set'].imageId = newImgId
-			doc['$set'].modifiedAt = new Date() // nie działa bo nie ma zdefioniowanego takiego pola w schema
-			//Films.update({
-				//_id: filmId
-		
-				
-					
-						
+			doc['$set'].modifiedAt = new Date() 	
+											
 			return doc;
 		}
 	},
 	after: {
-		update: function(){			
+		update: function(){	
+			//newImgId = null;		
 			FlowRouter.go('database');
 			FlashMessages.sendSuccess('Film został zmieniony');
 		}
 	}
 };
-var newImgId = null; //Tutaj może być konflikt
+var newImgId = null;
 
 AutoForm.addHooks('updateFilm', hooksObject);
 
@@ -45,7 +36,7 @@ Template.film_info.helpers({
 		console.log(imageId);
 		var image = imageId && Images.findOne(imageId);
 		console.log(image);
-		return image ? image.link() : "/img/suit.jpg";
+		return image ? image.link() : "/img/no_photo.svg";
 	},
   	updateImage: function () {
     	return Template.instance().updateImage.get();
@@ -96,14 +87,12 @@ Template.film_info.events({
           FlashMessages.sendError('Error during upload: ' + error);
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
-          newImgId=fileObj._id; //<--Tutaj może być problem [zmieniono]
+          newImgId=fileObj._id;
           console.log(newImgId);
         }
         template.updateImage.set(false);
       });
-
       upload.start();
     }
   }
 });
-

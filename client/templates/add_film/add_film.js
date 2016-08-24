@@ -1,18 +1,19 @@
 var hooksObject = {
 	before: {
 		insert: function(doc){
-      console.log(imgId);
-
-			doc.imageId = imgId;
+			if(imgId){
+        doc.imageId = imgId;
+      } else {
+        doc.imageId = "noPhotoId";
+      }
 			return doc;
 		}
 	},
 	after: {
 		insert: function(){
-			
-			FlowRouter.go('database');
+			imgId = false;
+      FlowRouter.go('database');
 			FlashMessages.sendSuccess('Pomyślnie dodano nowy film');
-
 		}
 	}
 };
