@@ -51,9 +51,9 @@ Template.add_film.events({
           alert('Error during upload: ' + error);
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
-          imgId=fileObj._id; //tego nie ma w oryginale
+          imgId=fileObj._id;
         }
-        console.log(imgId); // tutaj jest prawidłowe id ale nie jest przypisane do Films
+        console.log(imgId);
         template.currentUpload.set(false);
       });
 

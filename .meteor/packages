@@ -18,8 +18,8 @@ es5-shim@4.6.13                # ECMAScript 5 compatibility for older browsers.
 ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
 
 
-autopublish@1.0.7
-insecure@1.0.7
+#autopublish@1.0.7
+#insecure@1.0.7
 twbs:bootstrap
 kadira:flow-router
 kadira:blaze-layout
@@ -32,3 +32,4 @@ gwendall:auth-client-callbacks
 session@1.1.6
 mrt:flash-messages
 ostrio:files
+momentjs:moment

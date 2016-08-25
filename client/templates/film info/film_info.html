@@ -1,67 +1,69 @@
 <template name="film_info">
 
 	{{#with film}} <!-- with creates this -->
-	{{#if editMode}}
-		<h4>Edit Film</h4>
-		{{#autoForm collection="Films" doc=this id="updateFilm" type="update"}}
-			<fieldset>
-				{{> afQuickField name='localTitle'}}
-				{{> afQuickField name='orgTitle'}}
-				{{> afQuickField name='year'}}
-				{{> afQuickField name='genre' options='allowed'}}
-				{{> afQuickField name='disc_type' options='allowed'}}
-				{{> afQuickField name='desc' rows=6}}
-				{{> afQuickField name='imageId'}}
-				
-				<!-- Update Image (in progress) -->
-
-				{{#with updateImage}} 	
-    				Uploading <b>{{file.name}}</b>: 
-    				<span id="progress">{{progress.get}}%</span>
-  				{{else}}
-    				<input id="fileInput" type="file" />
-  				{{/with}}
-  				<br>
-
-  				<!-- Update Image (in progress) -->
-			</fieldset>
-			<button type="submit" class="btn btn-primary">Zapisz</button>
-			<div class="btn-group">
-				
-				<button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Anuluj</button>
-			</div>
-		{{/autoForm}}	
-	{{else}}
-		<div class="container">
-			<br>
-			<br>
-			<div class="row">
-				<div class="col-md-4">
-					<img class="center-block" src="{{imagePath imageId}}" width="300" alt="film poster">
-				</div>
-				<div class="col-md-6">
-					<button type="button" class="btn btn-primary pull-right return">Powrót</button>
-					<h2>{{localTitle}}</h2>
-					<h4>{{orgTitle}}</h4>
-					<p>{{year}}</p>
-					<p>{{disc_type}}</p>
-					<p>{{image}}</p>
-					<p>{{createdAt}}</p>
-					<p>{{genre}}</p>
-				</div>
-			</div>
-				<br>	
+	{{#if editMode}}	<!-- Edit Mode ON -->
+		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-10">
-					<p>{{desc}}</p>
-					<div class="btn-group pull-right" role="group" aria-label="UI buttons">
-					  <button type="button" class="btn btn-primary">Opcje</button>
-					  <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Edytuj</button>
-					  <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-trash"></i> Usuń film</button>
-					</div>	
+					<h3>Edit Film</h3>
 				</div>
-			</div>						
+				<div class="col-md-2">
+					<br>
+					<button type="button" class="btn btn-primary return pull-right">Powrót</button>
+				</div>
+			</div>		
+			
+			{{#autoForm collection="Films" doc=this id="updateFilm" type="update"}}
+				<fieldset>
+					{{> afQuickField name='localTitle'}}
+					{{> afQuickField name='orgTitle'}}
+					{{> afQuickField name='year'}}
+					{{> afQuickField name='genre' options='allowed'}}
+					{{> afQuickField name='disc_type' options='allowed'}}
+					{{> afQuickField name='desc' rows=6}}
+					{{> afQuickField name='imageId'}}
+
+					{{#with updateImage}} 	
+	    				Uploading <b>{{file.name}}</b>: 
+	    				<span id="progress">{{progress.get}}%</span>
+	  				{{else}}
+	    				<input id="fileInput" type="file" />
+	  				{{/with}}
+	  				<br>
+				</fieldset>
+				<button type="submit" class="btn btn-primary">Zapisz</button>	
+				<button type="button" class="btn btn-primary editMode">Anuluj</button>	
+			{{/autoForm}}			
+		</div>											
+	
+	{{else}} <!-- Edit Mode OFF -->
+		<br>
+		<div class="row">
+			<div class="col-md-4">
+				<img class="center-block" src="{{imagePath imageId}}" width="300" alt="film poster">
+			</div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-primary pull-right return">Powrót</button>
+				<h2>{{localTitle}}</h2>
+				<h4>{{orgTitle}}</h4>
+				<p>{{year}}</p>
+				<p>{{disc_type}}</p>
+				<p>{{image}}</p>
+				<p>{{formatDate createdAt}}</p>
+				<p>{{genre}}</p>
+			</div>
 		</div>
+			<br>	
+		<div class="row">
+			<div class="col-md-12">
+				<p>{{desc}}</p>
+				<div class="btn-group pull-right" role="group" aria-label="UI buttons">
+				  <button type="button" class="btn btn-primary">Opcje</button>
+				  <button type="button" class="btn btn-primary editMode">Edytuj</button>
+				  <button type="button" class="btn btn-primary deleteFilm"><i class="glyphicon glyphicon-trash"></i> Usuń film</button>
+				</div>	
+			</div>
+		</div>				
 	{{/if}}					
 	
 	{{/with}}

@@ -2,21 +2,25 @@ var hooksObject = {
 	before: {
 		update: function(doc){
 			var filmId = FlowRouter.getParam('id');
-			doc['$set'].imageId = newImgId
-			doc['$set'].modifiedAt = new Date() 	
+			if(newImgId===false){
+				return doc;
+			} else {
+				doc['$set'].imageId = newImgId;
+				doc['$set'].modifiedAt = new Date();
 											
-			return doc;
+				return doc;
+			}
 		}
 	},
 	after: {
 		update: function(){	
-			//newImgId = null;		
+			newImgId = false;
 			FlowRouter.go('database');
 			FlashMessages.sendSuccess('Film został zmieniony');
 		}
 	}
 };
-var newImgId = null;
+var newImgId = false;
 
 AutoForm.addHooks('updateFilm', hooksObject);
 
@@ -33,9 +37,7 @@ Template.film_info.helpers({
 		return Session.get('editMode');
 	},
 	imagePath: function(imageId){
-		console.log(imageId);
 		var image = imageId && Images.findOne(imageId);
-		console.log(image);
 		return image ? image.link() : "/img/no_photo.svg";
 	},
   	updateImage: function () {
@@ -44,7 +46,7 @@ Template.film_info.helpers({
 });
 
 Template.film_info.events({
-	'click .glyphicon-trash': function(event){				
+	'click .deleteFilm': function(event){				
 
 		if(confirm('Are You Sure?')){
 			var test = this._id;
@@ -59,12 +61,12 @@ Template.film_info.events({
 			return false
 		}
 	},
-	'click .glyphicon-cog' : function(){
+	'click .editMode' : function(){
 		Session.set('editMode', !Session.get('editMode'));
 		
 	},
 	'click .return' : function(){
-		FlowRouter.go('/database');	
+		FlowRouter.go('/database');
 	}
 	,
 	'change #fileInput': function (e, template) {
@@ -79,7 +81,6 @@ Template.film_info.events({
 
       upload.on('start', function () {
         template.updateImage.set(this);
-        console.log(template.updateImage.set(this));
       });
 
       upload.on('end', function (error, fileObj) {
@@ -88,7 +89,7 @@ Template.film_info.events({
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
           newImgId=fileObj._id;
-          console.log(newImgId);
+          //console.log(newImgId);
         }
         template.updateImage.set(false);
       });

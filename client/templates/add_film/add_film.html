@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="col-md-10">
 			<h3>Dodaj film</h3>
-			{{#autoForm collection="Films" id="addFilm" type="insert"}}
+			{{#autoForm collection="Films" id="addFilm" type="insert" validation="keyup"}}
 				<fieldset>
 					{{> afQuickField name='localTitle'}}
 					{{> afQuickField name='orgTitle'}}
@@ -17,7 +17,8 @@
 	    				<input id="fileInput" type="file" />
 	  				{{/with}}
 				</fieldset>
-				<button type="submit" class="btn btn-primary">Insert</button>
+				<br>
+				<button type="submit" class="btn btn-primary">Dodaj film</button>
 			{{/autoForm}}			
 		</div>
 	</div>	

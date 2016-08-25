@@ -1,5 +1,7 @@
 Template.film.onCreated(function(){
 	this.editMode = new ReactiveVar(false);
+
+	
 });
 Template.film.helpers({
 	updateFilmId: function(){
@@ -18,5 +20,11 @@ Template.film.helpers({
 		} else if (discType==='Inny'){
 			return 'label-default';
 		}
+	}
+});
+
+Template.film.events({
+	'click .more': function(){
+		Session.set('editMode', false);
 	}
 });
