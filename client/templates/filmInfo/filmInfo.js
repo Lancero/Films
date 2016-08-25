@@ -24,11 +24,11 @@ var newImgId = false;
 
 AutoForm.addHooks('updateFilm', hooksObject);
 
-Template.film_info.onCreated(function () {
+Template.filmInfo.onCreated(function () {
   this.updateImage = new ReactiveVar(false);
 });
 
-Template.film_info.helpers({
+Template.filmInfo.helpers({
 	film: ()=>{
 		var id = FlowRouter.getParam('id');
 		return Films.findOne({_id: id});
@@ -45,7 +45,7 @@ Template.film_info.helpers({
 	}
 });
 
-Template.film_info.events({
+Template.filmInfo.events({
 	'click .deleteFilm': function(event){				
 
 		if(confirm('Are You Sure?')){

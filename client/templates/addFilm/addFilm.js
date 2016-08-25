@@ -21,17 +21,17 @@ var imgId = null;
 
 AutoForm.addHooks('addFilm',hooksObject);
 
-Template.add_film.onCreated(function () {
+Template.addFilm.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
 
-Template.add_film.helpers({
+Template.addFilm.helpers({
   currentUpload: function () {
     return Template.instance().currentUpload.get();
   }
 });
 
-Template.add_film.events({
+Template.addFilm.events({
   'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 

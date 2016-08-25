@@ -1,10 +1,10 @@
 import {category} from '/imports/import.js'
 
-Template.film_list.onCreated(function(){
+Template.filmList.onCreated(function(){
 	this.subscribe('images');
 });
 
-Template.film_list.helpers ({
+Template.filmList.helpers ({
 	films: ()=> {
 		if(category.get()===null){
 			return Films.find({}, {sort:{localTitle: 1}});
