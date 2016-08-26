@@ -13,7 +13,7 @@
 				</div>
 			</div>		
 			
-			{{#autoForm collection="Films" doc=this id="updateFilm" type="update"}}
+			{{#autoForm collection="Films" doc=this id="updateFilm" type="update" validation="keyup"}}
 				<fieldset>
 					{{> afQuickField name='localTitle'}}
 					{{> afQuickField name='orgTitle'}}
@@ -46,7 +46,7 @@
 				<button type="button" class="btn btn-primary pull-right return">Powrót</button>
 				<h2>{{localTitle}}</h2>
 				<h4>{{orgTitle}}</h4>
-				<p>{{year}}</p>
+				<p>{{year}} {{yearsAgo year}}</p>
 				<p>{{disc_type}}</p>
 				<p>{{image}}</p>
 				<p>{{formatDate createdAt}}</p>

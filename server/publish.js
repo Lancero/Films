@@ -2,9 +2,17 @@ Meteor.publish('films', function(){
 	return Films.find({});
 });
 
-/*Films.allow({
+/*Films.allow({ //nie działają allow/deny
     insert: function() {
-      return true;
+    	if(this.userId==='Y9bhiETHAy8vxkWfP'){
+    		console.log('admin');
+    		return true;
+    	} else {
+    		console.log('not admin');
+    		return true;
+    	}
+    	
+      
     },
     update: function() {
       return false;

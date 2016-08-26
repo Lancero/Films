@@ -10,13 +10,19 @@ var hooksObject = {
 		}
 	},
 	after: {
-		insert: function(){
-			imgId = false;
-      FlowRouter.go('database');
-			FlashMessages.sendSuccess('Pomyślnie dodano nowy film');
+		insert: function(error, result){
+      if(error){
+        FlashMessages.sendError('Error');
+        console.log(error);
+      } else {
+        imgId = false;
+        FlowRouter.go('database');
+        FlashMessages.sendSuccess('Pomyślnie dodano nowy film');
+      }
 		}
 	}
 };
+
 var imgId = null;
 
 AutoForm.addHooks('addFilm',hooksObject);

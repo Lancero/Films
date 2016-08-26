@@ -13,10 +13,15 @@ var hooksObject = {
 		}
 	},
 	after: {
-		update: function(){	
-			newImgId = false;
-			FlowRouter.go('database');
-			FlashMessages.sendSuccess('Film został zmieniony');
+		update: function(error, result){
+			if(error){
+				FlashMessages.sendError('Wystąpił błąd');
+				console.log(error);
+			} else {
+				newImgId = false;
+				FlowRouter.go('database');
+				FlashMessages.sendSuccess('Film został zmieniony');
+			}
 		}
 	}
 };
@@ -42,7 +47,16 @@ Template.filmInfo.helpers({
 	},
   	updateImage: function () {
     	return Template.instance().updateImage.get();
-	}
+	},
+	yearsAgo: function(year){
+		if(year){
+			var currentYear = new Date().getFullYear();
+			var filmsYear = year;
+			var yearsAgo = currentYear-filmsYear;
+
+			return 'Film wydano '+yearsAgo+' lat temu';
+		}	
+	},
 });
 
 Template.filmInfo.events({
@@ -55,7 +69,7 @@ Template.filmInfo.events({
 			Meteor.call('deleteFilm', this._id);
 			Meteor.call('deleteImage', image);
 
-			FlashMessages.sendSuccess('Film removed from database');
+			FlashMessages.sendSuccess('Film został usunięty');
 			FlowRouter.go('/database');
 
 			return false
