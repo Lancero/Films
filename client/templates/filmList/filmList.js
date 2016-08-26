@@ -1,9 +1,5 @@
 import {category} from '/imports/import.js'
 
-Template.filmList.onCreated(function(){
-	this.subscribe('images');
-});
-
 Template.filmList.helpers ({
 	films: ()=> {
 		if(category.get()===null){

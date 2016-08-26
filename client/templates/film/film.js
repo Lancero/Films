@@ -1,6 +1,7 @@
 Template.film.onCreated(function(){
 	this.editMode = new ReactiveVar(false);
 
+	Meteor.subscribe('images');
 	
 });
 Template.film.helpers({
