@@ -21,3 +21,10 @@ body {
 .navbar-right {
 	margin-right: 150px;
 }
+.comment {
+	background-color: #ccc;
+	border-radius: 5px;
+	color: #111;
+	list-style-type: none;
+	padding: 8px;
+}

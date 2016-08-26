@@ -31,6 +31,8 @@ AutoForm.addHooks('updateFilm', hooksObject);
 
 Template.filmInfo.onCreated(function () {
   this.updateImage = new ReactiveVar(false);
+
+  this.subscribe('posts');
 });
 
 Template.filmInfo.helpers({
@@ -57,6 +59,9 @@ Template.filmInfo.helpers({
 			return 'Film wydano '+yearsAgo+' lat temu';
 		}	
 	},
+	posts: ()=>{
+		return Posts.find({}, {sort: {createdAt: 1}});
+	}
 });
 
 Template.filmInfo.events({
