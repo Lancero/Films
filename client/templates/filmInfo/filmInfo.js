@@ -32,7 +32,8 @@ AutoForm.addHooks('updateFilm', hooksObject);
 Template.filmInfo.onCreated(function () {
   this.updateImage = new ReactiveVar(false);
 
-  this.subscribe('posts');
+  var id = FlowRouter.getParam('id');
+  this.subscribe('thisFilmPosts', id);
 });
 
 Template.filmInfo.helpers({
@@ -60,7 +61,8 @@ Template.filmInfo.helpers({
 		}	
 	},
 	posts: ()=>{
-		return Posts.find({}, {sort: {createdAt: 1}});
+		var id = FlowRouter.getParam('id');
+		return Posts.find({filmId: id}, {sort: {createdAt: 1}});
 	}
 });
 
@@ -108,7 +110,6 @@ Template.filmInfo.events({
         } else {
           FlashMessages.sendSuccess('File "' + fileObj.name + '" successfully uploaded');         
           newImgId=fileObj._id;
-          //console.log(newImgId);
         }
         template.updateImage.set(false);
       });
@@ -116,3 +117,25 @@ Template.filmInfo.events({
     }
   }
 });
+
+var hooksObject2 = {
+	before: {
+		insert: function(doc){
+			var filmId = FlowRouter.getParam('id');
+		    doc.filmId = filmId;
+			return doc;
+		}
+	},
+	after: {
+		insert: function(error, result){
+			if(error){
+				FlashMessages.sendError('Wystąpił błąd');
+				console.log(error);
+			} else {
+				FlashMessages.sendSuccess('Dodano komentarz');
+			}
+		}
+	}
+};
+
+AutoForm.addHooks('insertPostForm', hooksObject2);

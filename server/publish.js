@@ -50,8 +50,12 @@ Meteor.publish('images', function () {
     }
 });*/
 
-Meteor.publish('posts', function () {
+/*Meteor.publish('posts', function () {
     return Posts.find({});
+});*/
+
+Meteor.publish('thisFilmPosts', function (id) {
+    return Posts.find({filmId: id});
 });
 
 Posts.allow({
