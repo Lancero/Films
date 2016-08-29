@@ -1,0 +1,14 @@
+<template name='posts'>
+		<div class="row">
+			<br>			
+			<div class="col-md-12">
+				{{#each posts}}
+					<ul>
+						<li class="comment">{{> singlePost}}</li>
+					</ul>	
+				{{/each}}
+				{{> quickForm collection="Posts" id="insertPostForm" type="insert"}}					
+			</div>
+			<br>			
+		</div>	
+</template>

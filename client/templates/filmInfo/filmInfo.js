@@ -34,6 +34,8 @@ Template.filmInfo.onCreated(function () {
 
   var id = FlowRouter.getParam('id');
   this.subscribe('thisFilmPosts', id);
+
+  AutoForm.debug()
 });
 
 Template.filmInfo.helpers({
@@ -56,20 +58,17 @@ Template.filmInfo.helpers({
 			var currentYear = new Date().getFullYear();
 			var filmsYear = year;
 			var yearsAgo = currentYear-filmsYear;
-
-			return 'Film wydano '+yearsAgo+' lat temu';
+			if(yearsAgo>1) {
+				return 'Film miał premierę '+yearsAgo+' lat temu';
+			}
 		}	
-	},
-	posts: ()=>{
-		var id = FlowRouter.getParam('id');
-		return Posts.find({filmId: id}, {sort: {createdAt: 1}});
 	}
 });
 
 Template.filmInfo.events({
 	'click .deleteFilm': function(event){				
 
-		if(confirm('Are You Sure?')){
+		if(confirm('Czy chcesz usunąć film?')){
 			var test = this._id;
 			var image = this.imageId;
 

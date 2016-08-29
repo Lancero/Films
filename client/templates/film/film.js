@@ -1,5 +1,6 @@
 Template.film.onCreated(function(){
 	this.editMode = new ReactiveVar(false);
+	this.postEdit = new ReactiveVar(false);
 
 	Meteor.subscribe('images');
 	

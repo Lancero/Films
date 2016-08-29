@@ -3,6 +3,9 @@ body {
 	color: #ccc;
 	padding-top: 70px;
 }
+blockquote {
+	margin-bottom: 0;
+}
 .film-list {
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 20px; 
@@ -27,4 +30,8 @@ body {
 	color: #111;
 	list-style-type: none;
 	padding: 8px;
+}
+.glyphicon-trash,
+.glyphicon-pencil {
+	cursor: pointer;
 }
