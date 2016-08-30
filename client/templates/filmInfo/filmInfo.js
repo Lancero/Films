@@ -35,7 +35,7 @@ Template.filmInfo.onCreated(function () {
   var id = FlowRouter.getParam('id');
   this.subscribe('thisFilmPosts', id);
 
-  AutoForm.debug()
+  AutoForm.debug() //Na końcu należy usunąć
 });
 
 Template.filmInfo.helpers({

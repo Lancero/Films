@@ -51,6 +51,8 @@
 				<p>{{image}}</p>
 				<p>{{formatDate createdAt}}</p>
 				<p>{{genre}}</p>
+				<p>{{desc}}</p>
+				{{> rating}}
 			</div>
 		</div>
 			<br>	
@@ -65,7 +67,6 @@
 			</div>
 		</div>
 		{{> posts}}
-		{{> updatePost}}
 	{{/if}}					
 	{{/with}}
 </template>

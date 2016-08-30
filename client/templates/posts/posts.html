@@ -7,7 +7,12 @@
 						<li class="comment">{{> singlePost}}</li>
 					</ul>	
 				{{/each}}
-				{{> quickForm collection="Posts" id="insertPostForm" type="insert"}}					
+				{{#autoForm collection="Posts" id="insertPostForm" type="insert"}}
+					<fieldset>
+						 {{> afQuickField name='comment'}}
+					</fieldset>
+ 					<button type="submit" class="btn btn-primary">Insert</button>
+				{{/autoForm}}
 			</div>
 			<br>			
 		</div>	

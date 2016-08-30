@@ -69,3 +69,19 @@ Posts.allow({
       return true;
     }
 });
+
+Meteor.publish('thisFilmRatings', function(id){
+  return Ratings.find({filmId: id});
+});
+
+Ratings.allow({
+    insert: function() {
+      return true;
+    },
+    update: function() {
+      return false;
+    },
+    remove: function() {
+      return false;
+    }
+});

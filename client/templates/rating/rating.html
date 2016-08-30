@@ -1,0 +1,8 @@
+<template name='rating'>
+	{{#autoForm collection="Ratings" id="addRating" type="insert"}}
+		<fieldset>
+			{{> afFieldInput name="rating" options=ratingOptions}}
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Oceń film</button>
+	{{/autoForm}}
+</template>
