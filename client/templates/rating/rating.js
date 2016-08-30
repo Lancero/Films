@@ -24,3 +24,24 @@ Template.rating.onCreated(function () {
 	var id = FlowRouter.getParam('id');
 	this.subscribe('thisFilmRatings', id);
 });
+
+Template.rating.helpers({
+	avgRating: function(){
+		var filmId = FlowRouter.getParam('id');
+		var ratingNumber = Ratings.find({filmId: filmId}).count();
+
+		var i = 0;
+		while (i < ratingNumber) {
+
+			var test = Ratings.findOne({filmId: filmId})['rating'];
+
+
+    	console.log(test);
+    	i++;
+		}
+		var ppp = 'empty'
+
+		console.log(ppp);
+		return ppp;
+	}
+});

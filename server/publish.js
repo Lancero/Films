@@ -10,9 +10,7 @@ Meteor.publish('films', function(){
     	} else {
     		console.log('not admin');
     		return true;
-    	}
-    	
-      
+    	} 	    
     },
     update: function() {
       return false;
@@ -48,10 +46,6 @@ Meteor.publish('images', function () {
     remove: function() {
       return true;
     }
-});*/
-
-/*Meteor.publish('posts', function () {
-    return Posts.find({});
 });*/
 
 Meteor.publish('thisFilmPosts', function (id) {
