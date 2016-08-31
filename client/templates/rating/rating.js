@@ -29,19 +29,18 @@ Template.rating.helpers({
 	avgRating: function(){
 		var filmId = FlowRouter.getParam('id');
 		var ratingNumber = Ratings.find({filmId: filmId}).count();
+		if(ratingNumber>0){
+			
+			var sum = 0;
+			for (var i = 0; i < ratingNumber; i++) {
+				var array = Ratings.find({filmId: filmId}).map(doc=>doc.rating);
+				sum += array[i]
+			}
+			var avg = sum / ratingNumber;
+			return 'Średnia ocena dla tego filmu to ' + avg;
 
-		var i = 0;
-		while (i < ratingNumber) {
-
-			var test = Ratings.findOne({filmId: filmId})['rating'];
-
-
-    	console.log(test);
-    	i++;
+		} else {
+			return 'Film nie posiada jeszcze żadnych ocen';
 		}
-		var ppp = 'empty'
-
-		console.log(ppp);
-		return ppp;
 	}
 });
