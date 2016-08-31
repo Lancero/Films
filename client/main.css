@@ -6,6 +6,12 @@ body {
 blockquote {
 	margin-bottom: 0;
 }
+dl {
+	background-color: #ccc;
+	border-radius: 5px;
+	color: #111;
+	padding: 8px;
+}
 .film-list {
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 20px; 

@@ -1,0 +1,22 @@
+<template name='settings'>
+			<!-- POSTS -->
+	<h3>Twoje posty</h3>	
+	{{#each posts}}
+	<dl>
+  		<dt>{{whichFilm filmId}}</dt>
+  		<dd>{{comment}}</dd>
+	</dl>
+	{{/each}}
+	
+	<hr>
+			<!-- RATINGS -->
+	<h3>Twoje oceny</h3>
+	{{#each ratings}}
+	<dl>
+		<dt>{{whichFilm filmId}}</dt>
+		<dd>{{rating}}</dd>
+	</dl>	
+	{{/each}}
+	<br>
+
+</template>
