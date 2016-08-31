@@ -3,7 +3,14 @@ var hooksObject3 = {
 		insert: function(doc){
 			var filmId = FlowRouter.getParam('id');
 		    doc.filmId = filmId;
-			return doc;
+
+		    var userId = Accounts.userId();
+		    var userRating = Ratings.find({userId: userId}).count();
+		    if(userRating>0) {
+		    	FlashMessages.sendError('Film został już oceniony');
+		    } else {
+		    	return doc;
+		    }	
 		}
 	},
 	after: {
