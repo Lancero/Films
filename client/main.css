@@ -1,3 +1,5 @@
+/*btn-primary #337ab7*/
+
 body {
 	background-image: url('/img/background.png'); /* Background pattern from subtlepatterns.com */
 	color: #ccc;
@@ -9,8 +11,23 @@ blockquote {
 dl {
 	background-color: #ccc;
 	border-radius: 5px;
+	border: 2px solid #337ab7;
 	color: #111;
 	padding: 8px;
+}
+.rating {
+	background-color: #ccc;
+	border-radius: 5px;
+	border: 2px solid #337ab7;
+	color: #111;
+	padding: 10px;
+}
+.rating-text {
+	padding-top: 5px;
+	padding-left: 20px;
+}
+.title {
+	font-weight: bold;
 }
 .film-list {
 	border-bottom: 1px solid #ccc;

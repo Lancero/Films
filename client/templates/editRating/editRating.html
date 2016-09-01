@@ -1,0 +1,14 @@
+<template name='editRating'>
+	{{#with rating}}
+	<br>
+	{{#autoForm collection="Ratings" doc=this id="editRating" type="update"}}
+		<fieldset>
+			{{> afFieldInput name="rating" options=ratingOptions}}
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Oceń film</button>
+	{{/autoForm}}
+
+	<button class="btn btn-primary pull-right edit">Zmień</button>
+
+	{{/with}}
+</template>

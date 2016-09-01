@@ -13,5 +13,15 @@ Template.settings.helpers({
 	},
 	whichFilm: function(id) {
 		return Films.findOne({_id: id}).localTitle;
+	},
+	id: function(){
+		return this._id;
+	}
+});
+
+Template.settings.events({
+	'click .edit': function() {
+		//console.log('.edit');
+		//console.log(this._id);
 	}
 });

@@ -1,0 +1,36 @@
+<template name='settings'>		
+	<!-- RATINGS -->
+	<h3>Twoje oceny</h3>
+	{{#each ratings}}
+		<ul class="rating list-unstyled">
+			<li>
+				<div class="row">
+					<div class="col-md-10 rating-text">
+						<span class="title">{{whichFilm filmId}}</span> - {{rating}}
+					</div>
+					<div class="col-md-2">
+						<a href="/rating/{{id}}"><button class="btn btn-primary pull-right edit">Zmień</button></a>
+					</div>
+				</div>
+			</li>
+		</ul>	
+	{{/each}}
+	<hr>
+	<!-- POSTS -->
+	<h3>Twoje posty</h3>	
+	{{#each posts}}
+		<ul class="rating list-unstyled">
+			<li>
+				<div class="row">
+					<div class="col-md-10 rating-text">
+						<p class="title">{{whichFilm filmId}}</p>
+						<p>{{comment}}</p>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-primary pull-right">Zmień</button>
+					</div>
+				</div>			
+			</li>
+		</ul>
+	{{/each}}
+</template>
