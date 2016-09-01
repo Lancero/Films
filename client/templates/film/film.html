@@ -1,21 +1,21 @@
 <template name="film">
 	<div class="row film-list">
-		<div class="col-md-2">
+		<div class="col-md-2 col-sm-5">
 			<img class="film-poster" src="{{imagePath imageId}}">
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 col-sm-7">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-sm-8">
 					<h3>{{localTitle}}</h3>
 					<h5>{{orgTitle}} {{#if year}} ({{year}}) {{/if}}</h5> 
 				</div>
-				<div class="col-md-2 col-md-offset-2">
+				<div class="col-sm-2 col-sm-offset-2">
 					<span class="label {{discType disc_type}} label-disc">{{disc_type}} </span>
 				</div>
 			</div>
 			<br>
 			<p>{{desc}}</p>
-			<a href="/film/{{_id}}" class="btn btn-default more pull-right">Więcej</a>
+			<a href="/film/{{_id}}" class="btn btn-primary more pull-right">Więcej</a>
 		</div>
 	</div>
 </template>
