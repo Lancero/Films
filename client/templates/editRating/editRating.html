@@ -1,14 +1,35 @@
 <template name='editRating'>
 	{{#with rating}}
-	<br>
-	{{#autoForm collection="Ratings" doc=this id="editRating" type="update"}}
-		<fieldset>
-			{{> afFieldInput name="rating" options=ratingOptions}}
-		</fieldset>
-		<button type="submit" class="btn btn-primary">Oceń film</button>
-	{{/autoForm}}
-
-	<button class="btn btn-primary pull-right edit">Zmień</button>
-
+		<br>
+		<h3>{{whichFilm filmId}}</h3>
+		
+		{{#autoForm collection="Ratings" doc=this id="editRating" type="update"}}
+			<fieldset>
+				{{> afFieldInput name="rating" options=ratingOptions}}
+			</fieldset>
+			<br>
+			<div class="btn-group pull-right" role="group" aria-label="UI-buttons">
+				<button type="button" class="btn btn-primary return">Anuluj</button>
+				<button type="submit" class="btn btn-primary">Zmień ocenę</button>
+			</div>	
+		{{/autoForm}}
 	{{/with}}
+
+	<!-- TEMP -->
+<!-- 	{{#each posts}} 
+
+	<ul class="rating list-unstyled">
+		<li>
+			<div class="row">
+				<div class="col-md-10 rating-text">
+					<p class="title">{{whichFilm filmId}}</p>
+					<p>{{comment}}</p>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-primary pull-right">Zmień</button>
+				</div>
+			</div>			
+		</li>
+	</ul>
+{{/each}} -->
 </template>

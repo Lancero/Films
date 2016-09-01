@@ -1,22 +1,26 @@
 Template.editRating.onCreated(function() {
 	var id = Accounts.userId();
+	
 	this.subscribe('thisUserRatings', id);
+	this.subscribe('thisUserPosts', id);
 });
 
 Template.editRating.events({
-	'click .edit': function() {
-		console.log(this);
-		var id = FlowRouter.getParam('id');
-		console.log(Ratings.findOne({_id: id}));
+	'click .return' : function(){
+		//console.log(MainFilmId);
+		FlowRouter.go('/settings');
 	}
 });
 
-Template.filmInfo.helpers({
-	rating: ()=>{
+Template.editRating.helpers({
+	rating: function(){
 		var id = FlowRouter.getParam('id');
-		console.log(this);
-		console.log(Ratings.findOne({_id: id}));
-
 		return Ratings.findOne({_id: id});
+	},
+	whichFilm: function(id) {
+		return Films.findOne({_id: id}).localTitle;
+	},
+	posts: function(){
+		return Posts.find();
 	}
 });

@@ -21,7 +21,10 @@ Template.settings.helpers({
 
 Template.settings.events({
 	'click .edit': function() {
-		//console.log('.edit');
-		//console.log(this._id);
+		MainFilmId = this.filmId
+		//console.log(this.filmId);
+		console.log(MainFilmId);
+
 	}
 });
+
